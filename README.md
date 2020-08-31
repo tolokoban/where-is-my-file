@@ -18,9 +18,9 @@ The URI param `id` is the file ID.
 
 #### Config screen
 
+Set the server hostname and the user nickname.
 
-
-## Service
+## Types
 
 ```typescript
 interface ISettings {
@@ -43,6 +43,8 @@ interface IBorrowing {
 }
 ```
 
+## Service
+
 ### `getInfo(fileId: string): IFile | null`
 
 Get info on a file. Return `null` if such a file does not exist.
@@ -55,10 +57,10 @@ Return a list of all the existing files.
 
 Return a list of files that are currently borrowed by someone.
 
-### `borrowFile(action: IBorrowing)`
+### `borrowFile(action: IBorrowing): IFile`
 
 Declare a file as borrowed by someone.
 
-### `releaseFile(fileId: string)`
+### `releaseFile(fileId: string): IFile`
 
 Declare a file as being in the library.
