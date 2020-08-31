@@ -1,4 +1,4 @@
-# Where is my file?
+# WIMF - Where is my file?
 
 Imagine you have a library in your company with useful books that everybody can consult and take to his/her desk.  
 When you need y book for yourself, the first think you want to know is where is it. It can be at the library, of on the desk of any colleague.
