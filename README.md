@@ -8,9 +8,26 @@ For this to work, you need to stock a QRCode on each book of your library.
 And anytime someone takes a book from the library, he/she have to scan the QRCode to let the system know that the book is now out of the library.
 In the same way, you will have to scan the QRCode again when you will return the book to the library.
 
+## Usage
+
+### With URI param `id=123`
+
+The URI param `id` is the file ID.
+
+### Direct access without URI params
+
+#### Config screen
+
+
+
 ## Service
 
 ```typescript
+interface ISettings {
+  hostname: string
+  username: string
+}
+
 interface IFile {
   id: string
   title: string
@@ -18,7 +35,30 @@ interface IFile {
   comment?: string
   date: number
 }
+
+interface IBorrowing {
+  id: string
+  borrower: string
+  comment: string
+}
 ```
+
+### `getInfo(fileId: string): IFile | null`
+
+Get info on a file. Return `null` if such a file does not exist.
+
+### `listAllFiles(): IFile[]`
+
+Return a list of all the existing files.
 
 ### `listBorrowedFiles(): IFile[]`
 
+Return a list of files that are currently borrowed by someone.
+
+### `borrowFile(action: IBorrowing)`
+
+Declare a file as borrowed by someone.
+
+### `releaseFile(fileId: string)`
+
+Declare a file as being in the library.
