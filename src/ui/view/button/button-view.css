@@ -18,6 +18,9 @@ button.ui-view-ButtonView {
     transition: all 0.2s;
     filter: brightness(100%);
     margin: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 button.ui-view-ButtonView.flat,

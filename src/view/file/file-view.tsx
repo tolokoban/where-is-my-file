@@ -2,6 +2,7 @@ import * as React from "react"
 import { IFile } from "../../contract/service"
 import Button from "../../ui/view/button"
 import DateFormat from "../../date-format"
+import IconFactory from '../../ui/factory/icon'
 
 import "./file-view.css"
 
@@ -27,10 +28,13 @@ export default function FileView(props: FileViewProps) {
         file.date = Date.now()
         onChange({ ...file })
     }
+    const { origin, pathname } = window.location
+    const url = `${origin}${pathname}`
     return (
         <div className={getClassNames(props)}>
             <header>
                 <div>{nickname}</div>
+                <a href={url}>{IconFactory.make('menu')}</a>
             </header>
             <main>
                 <div>

@@ -154,6 +154,7 @@ export default class Modal {
         promise: Promise<T>,
         options: Partial<ModalOptions> = {}
     ): Promise<T> {
+        console.log(`${content}`)
         return new Promise(resolve => {
             const modal = new Modal(options)
             modal.show(

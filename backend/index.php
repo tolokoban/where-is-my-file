@@ -55,8 +55,8 @@ function execRelease($id) {
     if (!$file) return false;
 
     save($id, [
-        "id" => $file['id'],
-        "title" => $file['title'],
+        "id" => $file->id,
+        "title" => $file->title,
         "date" => time()
     ]);
     return true;
