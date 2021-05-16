@@ -1,0 +1,24 @@
+export default interface ServiceInterface {
+    getInfo(fileId: number): Promise<IFile | null>
+    listAllFiles(): Promise<IFile[]>
+    borrowFile(action: IBorrowing): Promise<boolean>
+    releaseFile(fileId: number): Promise<boolean>
+    deleteFile(fileId: number): Promise<boolean>
+    createFile(title: string): Promise<IFile>
+    getNickname(): Promise<string | null>
+    setNickname(nickname: string): Promise<void>
+}
+
+export interface IFile {
+    id: number
+    title: string
+    borrower?: string
+    comment?: string
+    date: number
+}
+
+export interface IBorrowing {
+    id: number
+    borrower: string
+    comment: string
+}

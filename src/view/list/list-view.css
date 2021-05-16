@@ -1,0 +1,45 @@
+.view-ListView {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.view-ListView > header {
+    flex: 0 0 auto;
+}
+
+.view-ListView > footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 6rem;
+    background-image: linear-gradient(
+        to top,
+        var(--theme-color-screen),
+        var(--theme-color-screen-opacity-80),
+        transparent
+    );
+}
+
+.view-ListView > main {
+    flex: 1 1 auto;
+    padding: 1rem 1rem 6rem 1rem;
+    overflow: auto;
+}
+
+.view-ListView > main > div.space {
+    height: 6rem;
+    margin: 0;
+    content: ".";
+    color: transparent;
+}

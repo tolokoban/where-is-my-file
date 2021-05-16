@@ -1,46 +1,84 @@
 {
-    "name": "<<< CHANGE THIS NAME PLEASE! >>>",
+    "name": "where-is-my-file",
     "version": "0.1.0",
-    "private": true,
+    "private": false,
     "homepage": "./",
+    "sideEffects": [
+        "*.css"
+    ],
     "dependencies": {
-        "@testing-library/jest-dom": "^4.2.4",
-        "@testing-library/react": "^9.5.0",
-        "@testing-library/user-event": "^7.2.1",
-        "@types/node": "^12.12.42",
-        "@types/react": "^16.9.35",
-        "@types/react-dom": "^16.9.8",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
-        "react-scripts": "3.4.1",
-        "typescript": "^3.7.5",
-        "tfw": "^0"
+        "qrcode-generator": "^1.4.4",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1"
     },
     "scripts": {
-        "start": "PORT=3000 react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "deploy": "gh-pages --dist build",
-        "byobu": "./scripts/byobu.sh"
-    },
-    "eslintConfig": {
-        "extends": "react-app"
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
+        "start": "webpack serve --mode=development",
+        "build": "webpack --mode=production",
+        "lint": "eslint -c .eslintrc.js 'src/**/*.ts' 'src/**/*.tsx'",
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "php": "cp -rfv backend/* ~/www/wimf/"
     },
     "devDependencies": {
-        "@types/jest": "^25.2.3",
-        "gh-pages": "^2.2.0"
-    }
+        "@babel/preset-typescript": "^7.13.0",
+        "@types/jest": "^26.0.22",
+        "@types/react": "^17.0.2",
+        "@types/react-dom": "^17.0.1",
+        "@typescript-eslint/eslint-plugin": "^4.21.0",
+        "@typescript-eslint/eslint-plugin-tslint": "^4.21.0",
+        "@typescript-eslint/parser": "^4.21.0",
+        "babel-eslint": "^10.1.0",
+        "babel-jest": "^26.6.3",
+        "clean-webpack-plugin": "^3.0.0",
+        "copy-webpack-plugin": "^6.3.0",
+        "css-loader": "^5.0.1",
+        "eslint": "^7.23.0",
+        "eslint-config-prettier": "^8.1.0",
+        "eslint-config-react-app": "^6.0.0",
+        "eslint-plugin-flowtype": "^5.6.0",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-jsdoc": "^32.3.0",
+        "eslint-plugin-jsx-a11y": "^6.4.1",
+        "eslint-plugin-no-null": "^1.0.2",
+        "eslint-plugin-prefer-arrow": "^1.2.3",
+        "eslint-plugin-react": "^7.23.1",
+        "eslint-plugin-react-hooks": "^4.2.0",
+        "eslint-plugin-unicorn": "^29.0.0",
+        "file-loader": "^6.2.0",
+        "html-webpack-plugin": "^4.5.0",
+        "htmlparser2": "^6.0.0",
+        "identity-obj-proxy": "^3.0.0",
+        "jest": "^26.6.3",
+        "jest-websocket-mock": "^2.2.0",
+        "mock-socket": "^9.0.3",
+        "raw-loader": "^4.0.2",
+        "style-loader": "^2.0.0",
+        "ts-jest": "^26.5.3",
+        "ts-loader": "^8.0.11",
+        "ts-node": "^9.1.1",
+        "typescript": "^4.2.3",
+        "url-loader": "^4.1.1",
+        "webpack": "^5.24.2",
+        "webpack-cli": "^4.5.0",
+        "webpack-dev-server": "^3.11.2",
+        "yaml-loader": "^0.6.0"
+    },
+    "jest": {
+        "preset": "ts-jest",
+        "verbose": true,
+        "collectCoverage": true,
+        "coverageReporters": [
+            "lcov"
+        ],
+        "coverageDirectory": "test-coverage",
+        "coverageThreshold": {
+            "global": {
+                "branches": 0,
+                "functions": 0,
+                "lines": 0,
+                "statements": 0
+            }
+        }
+    },
+    "port": 17009
 }

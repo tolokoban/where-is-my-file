@@ -1,0 +1,35 @@
+.view-FileButtonView {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: var(--theme-color-primary-light);
+    color: var(--theme-color-on-primary-light);
+    box-shadow: var(--theme-shadow-button);
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: all .3s;
+    filter: brightness(100%);
+    border: none;
+    font: inherit;
+    display: block;
+    width: 100%;
+}
+
+.view-FileButtonView:active {
+    filter: brightness(150%);
+    box-shadow: var(--theme-shadow-button-pressed);
+}
+
+.view-FileButtonView.borrowed {    
+    background-color: var(--theme-color-primary-dark);
+    color: var(--theme-color-on-primary-dark);
+}
+
+.view-FileButtonView > div:last-child {
+    font-size: 80%;
+    margin-top: .5rem;
+    color: var(--theme-color-on-primary-opacity-50);
+}
+
+.view-FileButtonView > div:last-child > b {
+    color: var(--theme-color-accent);
+}

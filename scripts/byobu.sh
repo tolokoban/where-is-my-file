@@ -18,7 +18,7 @@ then
     byobu-tmux new-window
     byobu-tmux rename-window $DIRNAME
     byobu-tmux send-keys -t 0 "cd '$DIR/..'" 'C-m'
-    byobu-tmux send-keys -t 0 'atom .' 'C-m'
+    byobu-tmux send-keys -t 0 'code .' 'C-m'
     byobu-tmux split-window -h
     byobu-tmux send-keys -t 1 "cd '$DIR/..'" 'C-m'
     byobu-tmux send-keys -t 1 'npm start' 'C-m'

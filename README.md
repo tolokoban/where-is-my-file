@@ -29,7 +29,7 @@ interface ISettings {
 }
 
 interface IFile {
-  id: string
+  id: number
   title: string
   borrower?: string
   comment?: string
@@ -37,7 +37,7 @@ interface IFile {
 }
 
 interface IBorrowing {
-  id: string
+  id: number
   borrower: string
   comment: string
 }
@@ -45,7 +45,7 @@ interface IBorrowing {
 
 ## Service
 
-### `getInfo(fileId: string): IFile | null`
+### `getInfo(fileId: number): IFile | null`
 
 Get info on a file. Return `null` if such a file does not exist.
 
@@ -57,10 +57,10 @@ Return a list of all the existing files.
 
 Return a list of files that are currently borrowed by someone.
 
-### `borrowFile(action: IBorrowing): IFile`
+### `borrowFile(action: IBorrowing): boolean`
 
 Declare a file as borrowed by someone.
 
-### `releaseFile(fileId: string): IFile`
+### `releaseFile(fileId: number): boolean`
 
 Declare a file as being in the library.
