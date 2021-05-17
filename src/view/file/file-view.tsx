@@ -65,7 +65,7 @@ export default function FileView(props: FileViewProps) {
                         <b>{file.title}</b>
                     </p>
                     <img
-                        style={{ width: "70vmin" }}
+                        style={{ width: "60vmin" }}
                         alt={`QRCOde pour ${file.title}`}
                         src={qrcode.createDataURL()}
                     />
