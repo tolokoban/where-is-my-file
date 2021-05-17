@@ -60,7 +60,6 @@ export default function FileView(props: FileViewProps) {
                         onDelete(file.id)
                     }}
                 />
-                <hr />
                 <div style={{ textAlign: "center" }}>
                     <p>
                         <b>{file.title}</b>
