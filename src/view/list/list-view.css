@@ -43,3 +43,15 @@
     content: ".";
     color: transparent;
 }
+
+.view-ListView > main > div.files {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+    .view-ListView > main > div.files {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

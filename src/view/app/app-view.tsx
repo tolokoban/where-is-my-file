@@ -2,9 +2,7 @@ import * as React from "react"
 import ListView from "../list"
 import ServiceInterface, { IFile } from "../../contract/service"
 import Modal from "../../ui/modal"
-import Button from "../../ui/view/button"
 import Input from "../../ui/view/input/text"
-import QRCode from "qrcode-generator"
 
 import "./app-view.css"
 
@@ -52,59 +50,6 @@ async function handleAddFile(service: ServiceInterface): Promise<boolean> {
     return true
 }
 
-async function handleEditFile(file: IFile): Promise<IFile | null> {
-    const confirm = await Modal.confirm({
-        title: file.title,
-        content: (
-            <div>
-                <Button
-                    wide={true}
-                    label={
-                        file.borrower
-                            ? "Remettre ce dossier en rayons."
-                            : "Emprunter ce dossier."
-                    }
-                    flat={true}
-                    onClick={() => (window.location.search = `?${file.id}`)}
-                />
-                <br />
-                <Button
-                    wide={true}
-                    label="Télécharger le QRCode"
-                    onClick={() => handleQRCode(file)}
-                />
-                <hr />
-                Voulez-vous supprimer le dossier
-                <br />
-                <b>{file.title}</b>?
-            </div>
-        ),
-        accent: true,
-        labelOK: "Supprimer ce dossier"
-    })
-    if (confirm) return null
-    return file
-}
-
-async function handleQRCode(file: IFile) {
-    const { origin, pathname } = window.location
-    const url = `${origin}${pathname}?${file.id}`
-    const qrcode = QRCode(0, "L")
-    qrcode.addData(url)
-    qrcode.make()
-    await Modal.info(
-        <div style={{ textAlign: "center" }}>
-            <p>
-                <b>{file.title}</b>
-            </p>
-            <img
-                style={{ width: "70vmin" }}
-                alt={`QRCOde pour ${file.title}`}
-                src={qrcode.createDataURL()}
-            />
-        </div>,
-        {
-            padding: "1rem"
-        }
-    )
+function handleEditFile(file: IFile) {
+    window.location.search = `?${file.id}`
 }

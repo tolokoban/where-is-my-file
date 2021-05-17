@@ -22,7 +22,7 @@
 }
 
 .view-FileView > main div.file {
-    font-size: 200%;
+    font-size: 130%;
     font-weight: bolder;
     background-color: var(--theme-color-section);
     color: var(--theme-color-on-section);
@@ -47,4 +47,12 @@
 
 .view-FileView.borrow > main > .release {
     order: -1;
+}
+
+.view-FileView > header > button {
+    border: none;
+    font: inherit;
+    background: transparent;
+    color: var(--theme-color-accent);
+    cursor: pointer;
 }

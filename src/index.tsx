@@ -52,6 +52,7 @@ async function start() {
                 file={file}
                 nickname={nickname ?? "---"}
                 onChange={handleFileChange}
+                onDelete={handleDeleteFile}
             />,
             root
         )
@@ -61,6 +62,11 @@ async function start() {
 }
 
 start()
+
+async function handleDeleteFile(fileId: number) {
+    await service.deleteFile(fileId)
+    window.location.search = ''
+}
 
 async function askNickname() {
     let nickname = ""

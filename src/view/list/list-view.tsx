@@ -9,7 +9,7 @@ import "./list-view.css"
 export interface ListViewProps {
     className?: string
     service: ServiceInterface
-    onEditFile(file: IFile): Promise<IFile | null>
+    onEditFile(file: IFile): void
     onAddFile(): Promise<boolean>
 }
 
@@ -17,7 +17,7 @@ export interface ListViewProps {
  * List all files
  */
 export default function ListView(props: ListViewProps) {
-    const { service } = props
+    const { service, onEditFile } = props
     const [filter, setFilter] = React.useState("")
     const [files, setFiles] = React.useState<IFile[]>([])
     const cleanFilter = filter.trim().toLowerCase()
@@ -33,18 +33,6 @@ export default function ListView(props: ListViewProps) {
         }
         late()
     }, [service])
-    const handleFileClick = (file: IFile) => {
-        const late = async () => {
-            const editedFile = await props.onEditFile(file)
-            if (!editedFile) {
-                setFiles(files.filter(f => f.id !== file.id))
-                await service.deleteFile(file.id)
-            } else {
-                setFiles([...files])
-            }
-        }
-        late()
-    }
     const handleAddFile = async () => {
         const confirm = await props.onAddFile()
         if (!confirm) return
@@ -62,13 +50,15 @@ export default function ListView(props: ListViewProps) {
                 />
             </header>
             <main>
-                {filteredFiles.map(file => (
-                    <FileButton
-                        key={file.id}
-                        file={file}
-                        onClick={handleFileClick}
-                    />
-                ))}
+                <div className="files">
+                    {filteredFiles.map(file => (
+                        <FileButton
+                            key={file.id}
+                            file={file}
+                            onClick={onEditFile}
+                        />
+                    ))}
+                </div>
                 <p>
                     Appuyez sur le bouton ci-dessous pour ajouter un nouveau
                     dossier à votre bibliothèque.

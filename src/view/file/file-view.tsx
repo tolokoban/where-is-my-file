@@ -2,7 +2,9 @@ import * as React from "react"
 import { IFile } from "../../contract/service"
 import Button from "../../ui/view/button"
 import DateFormat from "../../date-format"
-import IconFactory from '../../ui/factory/icon'
+import IconFactory from "../../ui/factory/icon"
+import Modal from "../../ui/modal"
+import QRCode from "qrcode-generator"
 
 import "./file-view.css"
 
@@ -14,10 +16,11 @@ export interface FileViewProps {
      * @param borrower If not defined, we are putting back the file in the shelves.
      */
     onChange(file: IFile): void
+    onDelete(fileId: number): void
 }
 
 export default function FileView(props: FileViewProps) {
-    const { nickname, file, onChange } = props
+    const { nickname, file, onChange, onDelete } = props
     const handleBorrow = () => {
         file.borrower = nickname
         file.date = Date.now()
@@ -28,13 +31,59 @@ export default function FileView(props: FileViewProps) {
         file.date = Date.now()
         onChange({ ...file })
     }
-    const { origin, pathname } = window.location
-    const url = `${origin}${pathname}`
+    const handleMenu = async () => {
+        const { origin, pathname } = window.location
+        const url = `${origin}${pathname}?${file.id}`
+        const qrcode = QRCode(0, "L")
+        qrcode.addData(url)
+        qrcode.make()
+        await Modal.info(
+            <div>
+                <Button
+                    wide={true}
+                    accent={true}
+                    label="Supprimer ce dossier"
+                    onClick={async () => {
+                        const confirm = await Modal.confirm({
+                            title: "Supprimer ce dossier",
+                            content: (
+                                <div>
+                                    Êtes-vous sûr de vouloir supprimer le
+                                    dossier <b>{file.title}</b> ?
+                                </div>
+                            ),
+                            accent: true,
+                            labelCancel: "Non",
+                            labelOK: "Supprimer"
+                        })
+                        if (!confirm) return
+                        onDelete(file.id)
+                    }}
+                />
+                <hr />
+                <div style={{ textAlign: "center" }}>
+                    <p>
+                        <b>{file.title}</b>
+                    </p>
+                    <img
+                        style={{ width: "70vmin" }}
+                        alt={`QRCOde pour ${file.title}`}
+                        src={qrcode.createDataURL()}
+                    />
+                </div>
+                <Button
+                    wide={true}
+                    label="Rechercher / Ajouter un dossier"
+                    onClick={() => (window.location.search = "")}
+                />
+            </div>
+        )
+    }
     return (
         <div className={getClassNames(props)}>
             <header>
                 <div>{nickname}</div>
-                <a href={url}>{IconFactory.make('menu')}</a>
+                <button onClick={handleMenu}>{IconFactory.make("menu")}</button>
             </header>
             <main>
                 <div>
