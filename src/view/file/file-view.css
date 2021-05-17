@@ -48,11 +48,3 @@
 .view-FileView.borrow > main > .release {
     order: -1;
 }
-
-.view-FileView > header > button {
-    border: none;
-    font: inherit;
-    background: transparent;
-    color: var(--theme-color-accent);
-    cursor: pointer;
-}

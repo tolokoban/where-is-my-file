@@ -1,10 +1,12 @@
 import * as React from "react"
 import TextInput from "../../ui/view/input/text"
 import FloatingButton from "../../ui/view/floating-button"
+import IconFactory from "../../ui/factory/icon"
 import ServiceInterface, { IFile } from "../../contract/service"
 import FileButton from "../file-button"
 
 import "./list-view.css"
+import Modal from "../../ui/modal"
 
 export interface ListViewProps {
     className?: string
@@ -42,6 +44,12 @@ export default function ListView(props: ListViewProps) {
     return (
         <div className={getClassNames(props)}>
             <header>
+                <div className="nickname">
+                    <div>{service.getNickname()}</div>
+                    <button onClick={() => handleEditNickname(service)}>
+                        {IconFactory.make("edit")}
+                    </button>
+                </div>
                 <TextInput
                     wide={true}
                     label="Rechercher un dossier par nom"
@@ -83,4 +91,23 @@ function getClassNames(props: ListViewProps): string {
     }
 
     return classNames.join(" ")
+}
+
+async function handleEditNickname(service: ServiceInterface) {
+    let nickname = service.getNickname()
+    const confirm = await Modal.confirm({
+        title: "Éditer le pseudonyme",
+        content: (
+            <TextInput
+                label="Pseudonyme"
+                value={nickname}
+                onChange={value => (nickname = value)}
+            />
+        ),
+        labelCancel: "Annuler",
+        labelOK: "Valider"
+    })
+    if (!confirm) return
+    service.setNickname(nickname)
+    window.location.reload()
 }

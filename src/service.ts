@@ -14,12 +14,12 @@ export default class Service implements ServiceInterface {
         return await exec("del", { id: fileId })
     }
 
-    async getNickname(): Promise<string | null> {
-        return await get("nickname", null)
+    getNickname(): string {
+        return get("nickname", "")
     }
 
-    async setNickname(nickname: string): Promise<void> {
-        await set("nickname", nickname)
+    setNickname(nickname: string): void {
+        set("nickname", nickname)
     }
 
     async getInfo(fileId: number): Promise<IFile | null> {
@@ -75,7 +75,7 @@ async function exec(
     }
 }
 
-async function get<T>(name: string, defaultValue: T): Promise<T> {
+function get<T>(name: string, defaultValue: T): T {
     try {
         const value = window.localStorage.getItem(name)
         console.log("[service] name, value = ", name, value) // @FIXME: Remove this line written on 2021-05-16 at 16:33

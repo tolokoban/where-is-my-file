@@ -87,3 +87,15 @@ input {
     font: inherit;
     font-size: 1rem;
 }
+
+header button {
+    border: none;
+    font: inherit;
+    background: transparent;
+    color: var(--theme-color-accent);
+    cursor: pointer;
+}
+
+header button svg {
+    height: 1.5rem;
+}

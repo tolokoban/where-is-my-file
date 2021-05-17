@@ -6,9 +6,9 @@ import Service from "./service"
 import Modal from "./ui/modal"
 import Nickname from "./view/nickname"
 import FileView from "./view/file"
+import { IFile } from "./contract/service"
 
 import "./index.css"
-import { IFile } from "./contract/service"
 
 const service = new Service()
 

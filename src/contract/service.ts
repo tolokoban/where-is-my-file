@@ -5,8 +5,8 @@ export default interface ServiceInterface {
     releaseFile(fileId: number): Promise<boolean>
     deleteFile(fileId: number): Promise<boolean>
     createFile(title: string): Promise<IFile>
-    getNickname(): Promise<string | null>
-    setNickname(nickname: string): Promise<void>
+    getNickname(): string
+    setNickname(nickname: string): void
 }
 
 export interface IFile {
